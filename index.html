@@ -1,0 +1,93 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>오사카·교토 1월 여행</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one phone-width column, sticky day chips, each day = header → photo strip → timeline → meals → notes */
+:root{
+  --paper:#f2f4f6; --card:#ffffff; --ink:#1c2733; --muted:#5b6876; --line:#d9dfe6;
+  --indigo:#23466e; --persimmon:#b8502f; --chip:#e8eef5;
+  --display:"Gowun Batang","Noto Serif KR",serif; --body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#11161c; --card:#19212a; --ink:#e6ebf0; --muted:#9aa7b4; --line:#2b3642;
+  --indigo:#8fb4e0; --persimmon:#ec8b68; --chip:#22303e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161c; --card:#19212a; --ink:#e6ebf0; --muted:#9aa7b4; --line:#2b3642;
+  --indigo:#8fb4e0; --persimmon:#ec8b68; --chip:#22303e; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.7 var(--body);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:640px;margin:0 auto}
+a{color:var(--indigo);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--persimmon);outline-offset:2px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.3}
+.hero{padding-block:36px 20px}
+.hero p{margin:6px 0 0;color:var(--muted)}
+.hero .range{font-variant-numeric:tabular-nums;letter-spacing:.06em;color:var(--persimmon);font-weight:700;font-size:14px;margin:0 0 8px}
+h1{font-size:32px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--paper);display:flex;gap:8px;overflow-x:auto;padding-block:10px;margin-inline:-16px;padding-inline:16px;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}
+.day{padding-block:28px 8px;border-bottom:1px solid var(--line);scroll-margin-top:60px;display:grid;gap:16px}
+.date{margin:0;font-weight:700;color:var(--persimmon);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.date span{display:inline-block;margin-left:4px;color:var(--muted);font-weight:500}
+h2{font-size:25px;margin-top:2px}
+.lead{margin:8px 0 0;color:var(--muted)}
+.photos{display:flex;gap:10px;overflow-x:auto;margin-inline:-16px;padding-inline:16px;scroll-snap-type:x mandatory}
+figure{flex:none;width:78%;max-width:340px;margin:0;scroll-snap-align:start}
+figure img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:var(--chip)}
+figcaption{font-size:12px;color:var(--muted);margin-top:4px}
+.timeline{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.timeline li{display:grid;grid-template-columns:5.6em 1fr;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}
+.timeline li:first-child{border-top:0}
+time{font-weight:700;color:var(--indigo);font-variant-numeric:tabular-nums;font-size:14px;line-height:1.6;padding-top:1px}
+.what{min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.what b{font-weight:700}
+.what span:not(.chip){flex-basis:100%;color:var(--muted);font-size:15px}
+.chip{font-size:12px;font-weight:500;background:var(--chip);color:var(--indigo);border-radius:6px;padding:0 7px}
+.chip.must{background:var(--persimmon);color:var(--card);font-weight:700;font-size:13px;padding:1px 8px}
+.eat{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0;list-style:none}
+.eat li{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 9px}
+.eat b{color:var(--persimmon);font-weight:700;margin-left:4px;font-variant-numeric:tabular-nums}
+.meals{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.meals dt{font-weight:700;font-size:14px;color:var(--muted);padding-top:2px}
+.meals dd{margin:0;min-width:0}
+.tip,.planb{margin:0;padding:12px 14px;border-radius:10px;font-size:15px}
+.tip{background:var(--chip)}
+.planb{border:1px dashed var(--line);color:var(--muted)}
+.tip b,.planb b{display:block;font-size:13px;letter-spacing:.04em;color:var(--ink);margin-bottom:2px}
+.prep{padding-block:32px 0;display:grid;gap:14px}
+.prep h2{font-size:23px}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:500;font-size:13px}
+.prep ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.foot{margin-top:28px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+<div class="wrap">
+<header class="hero">
+  <p class="range">2027. 1. 13 수 — 1. 17 일</p>
+  <h1>오사카·교토 1월 여행</h1>
+  <p>날짜를 누르면 그날 일정으로 갑니다. 시각은 계획이라 그날 상황에 따라 바뀔 수 있어요.</p>
+  <p><span class="chip must">예약 필수</span> 표시가 있는 곳은 미리 예약해야 들어갈 수 있어요.</p>
+  <ul class="eat" aria-label="먹을 것"><li>오코노미야키<b>1/13</b></li><li>타코야키<b>1/13</b></li><li>시장 구경<b>1/13 · 1/15</b></li><li>초밥<b>1/13</b></li><li>가이센동<b>1/15</b></li><li>우동<b>1/15</b></li><li>나폴리탄<b>1/15</b></li><li>야키니쿠<b>1/15</b></li><li>교토 점심 코스<b>1/16</b></li><li>라멘<b>1/16 · 1/17</b></li><li>스프카레<b>1/17 선택</b></li></ul>
+</header>
+<nav aria-label="날짜"><a href="#d13">1/13 수</a><a href="#d14">1/14 목</a><a href="#d15">1/15 금</a><a href="#d16">1/16 토</a><a href="#d17">1/17 일</a><a href="#prep">준비물</a></nav>
+<section class="day" id="d13"><header><p class="date">1월 13일 <span>수</span></p><h2>오코노미야키 · 시장 구경 · 초밥</h2><p class="lead">도착 시각에 맞춰 만나서 시작합니다. 한 노선(사카이스지선)으로 남쪽에서 북쪽으로 올라갔다 내려옵니다. 다음 날이 USJ라 저녁은 일찍 마칩니다.</p></header><div class="photos"><figure><img src="photos/ajinoya.jpg" alt="아지노야 본점" loading="lazy" width="900" height="506"><figcaption>아지노야 본점 · <a href="https://ajinoya-okonomiyaki.com/top/menu/okonomiyaki.php" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div><ol class="timeline"><li><time>도착 후</time><div class="what"><b>숙소</b><span>짐 맡기고 만나서 출발</span></div></li><li><time>12:00</time><div class="what"><b>아지노야 본점</b><span class="chip">우선입장권 선택</span><span>오사카식 오코노미야키 점심 (현금·PayPay) <a href="https://www.tablecheck.com/en/shops/ajinoya-okonomiyaki/reserve" target="_blank" rel="noopener">안내</a></span></div></li><li><time>13:45</time><div class="what"><b>덴진바시스지 상점가 · 덴마 시장</b><span>현지 사람들이 장 보는 긴 아케이드 상점가와 시장 구경 <a href="https://www.tenmaichiba.com/shop/index.html" target="_blank" rel="noopener">안내</a></span></div></li><li><time>16:00</time><div class="what"><b>타코야키 히로코</b><span>동네 단골 타코야키 간식 (10개 300엔대, 현금, 17시 마감) <a href="https://tabelog.com/osaka/A2701/A270103/27007932/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>17:30</time><div class="what"><b>스시 신노스케</b><span class="chip must">예약 필수</span><span>초밥 저녁 <a href="https://tabelog.com/en/osaka/A2701/A270106/27096408/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>19:30</time><div class="what"><b>숙소</b><span>일찍 쉬기 · 내일 USJ 준비</span></div></li></ol><dl class="meals"><dt>점심</dt><dd>아지노야 오코노미야키 — 대안: 샤부와라</dd><dt>간식</dt><dd>타코야키 히로코</dd><dt>저녁</dt><dd>스시 신노스케 — 대안: 스시 구로스기</dd></dl><p class="tip"><b>알아둘 것</b>아지노야와 타코야키 가게는 카드가 안 됩니다. 엔화 현금을 준비하세요.</p><p class="planb"><b>날씨·컨디션이 안 좋으면</b>늦게 도착하면 상점가 구경은 빼고 초밥 저녁만 갑니다. 상점가는 지붕이 있어 비가 와도 걸을 수 있습니다.</p></section><section class="day" id="d14"><header><p class="date">1월 14일 <span>목</span></p><h2>유니버설 스튜디오 재팬</h2><p class="lead">하루 종일 USJ입니다. 개장 1시간 전쯤 도착하는 게 목표입니다.</p></header><div class="photos"><figure><img src="photos/usj.jpg" alt="유니버설 스튜디오 재팬" loading="lazy" width="800" height="800"><figcaption>유니버설 스튜디오 재팬 · <a href="https://www.usj.co.jp/web/ko/kr/areas/the-wizarding-world-of-harry-potter" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div><ol class="timeline"><li><time>개장 60~90분 전</time><div class="what"><b>USJ 입구</b><span class="chip must">예약 필수</span><span>입장 후 공식 앱에서 닌텐도 월드 정리권 받기 <a href="https://www.usj.co.jp/web/ko/kr/tickets" target="_blank" rel="noopener">안내</a></span></div></li><li><time>점심</time><div class="what"><b>파크 사이드 그릴</b><span class="chip">우선안내</span><span>스테이크·그릴 점심 <a href="https://www.usj.co.jp/web/ko/kr/restaurants/priority-seating" target="_blank" rel="noopener">안내</a></span></div></li><li><time>저녁</time><div class="what"><b>SAIDO</b><span class="chip">현장</span><span>파크 안 일식 저녁</span></div></li><li><time>폐장 후</time><div class="what"><b>숙소</b><span>귀환 (전철 40~80분)</span></div></li></ol><dl class="meals"><dt>점심</dt><dd>파크 사이드 그릴 — 대안: 키노피오 카페 (닌텐도 월드 안)</dd><dt>저녁</dt><dd>SAIDO — 대안: 돌아와서 후쿠타로</dd></dl><p class="tip"><b>알아둘 것</b>한 번 나가면 다시 들어갈 수 없어서 식사는 모두 파크 안에서 합니다. 출발 전에 USJ 공식 앱을 깔고 로그인해 두세요.</p><p class="planb"><b>날씨·컨디션이 안 좋으면</b>정리권을 못 받으면 다른 구역 위주로 돕니다. 비나 추위가 심하면 실내 쇼와 긴 식사 휴식을 넣습니다.</p></section><section class="day" id="d15"><header><p class="date">1월 15일 <span>금</span></p><h2>시장 아침 · 우동 · 나폴리탄 · 야키니쿠</h2><p class="lead">아침 일찍 시장에서 해산물 덮밥을 먹고, 숙소에서 쉰 뒤 천천히 다닙니다. 저녁은 남쪽 나가이에서 야키니쿠입니다.</p></header><div class="photos"><figure><img src="photos/imai.jpg" alt="도톤보리 이마이 본점" loading="lazy" width="690" height="484"><figcaption>도톤보리 이마이 본점 · <a href="https://www.d-imai.com/shops/honten/" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div><ol class="timeline"><li><time>07:30</time><div class="what"><b>숙소 출발</b><span>시장 식당은 재료가 떨어지면 일찍 닫습니다</span></div></li><li><time>08:00</time><div class="what"><b>기즈 시장 우오이치 식당</b><span class="chip">줄 서기</span><span>시장 안 해산물 덮밥(가이센동) 아침 (현금) <a href="https://tabelog.com/osaka/A2701/A270206/27103960/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>09:20</time><div class="what"><b>숙소</b><span>USJ 다음 날이니 쉬기</span></div></li><li><time>12:05</time><div class="what"><b>도톤보리 이마이 본점</b><span>우동 점심 (키츠네 우동 930엔 · 오야코동 1,500엔) <a href="https://www.d-imai.com/shops/honten/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>13:35</time><div class="what"><b>나카노시마 강변 산책</b><span>강 사이 섬 공원과 옛 공회당 주변을 걷고 카페에서 쉬기 <a href="https://osaka-info.jp/spot/nakanoshima-park/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>15:30</time><div class="what"><b>킷사 마즈라 (우메다)</b><span>오래된 지하 다방에서 나폴리탄 · 커피 (현금) <a href="https://tabelog.com/osaka/A2701/A270101/27004819/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>17:30</time><div class="what"><b>마타사부로</b><span class="chip must">예약 필수</span><span>숙성 고기 야키니쿠 저녁 (180g 코스 10,000엔~) <a href="https://www.tablecheck.com/en/matasaburo/reserve/message" target="_blank" rel="noopener">안내</a></span></div></li><li><time>19:30</time><div class="what"><b>숙소</b><span>귀환 (지하철 한 노선)</span></div></li></ol><dl class="meals"><dt>아침</dt><dd>우오이치 식당 가이센동</dd><dt>점심</dt><dd>이마이 우동</dd><dt>간식</dt><dd>마즈라 나폴리탄</dd><dt>저녁</dt><dd>마타사부로 야키니쿠 — 대안: Kuku (도심 야키니쿠)</dd></dl><p class="tip"><b>알아둘 것</b>시장 식당, 이마이, 마즈라는 예약을 받지 않거나 필요 없습니다. 마즈라와 시장 식당은 현금만 받습니다.</p><p class="planb"><b>날씨·컨디션이 안 좋으면</b>아침에 못 일어나면 시장은 빼고 늦게 시작합니다. 춥거나 피곤하면 산책을 줄이고 다방에서 오래 쉽니다.</p></section><section class="day" id="d16"><header><p class="date">1월 16일 <span>토</span></p><h2>교토 당일치기</h2><p class="lead">절과 정원을 보고 교토식 점심을 먹은 뒤 기온을 걸어 내려옵니다. 저녁은 교토역 라멘을 먹고 오사카로 돌아옵니다.</p></header><div class="photos"><figure><img src="photos/nanzenji.jpg" alt="난젠지·수로각" loading="lazy" width="900" height="318"><figcaption>난젠지·수로각 · <a href="https://www.nanzenji.or.jp/" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure><img src="photos/byodoin.jpg" alt="뵤도인" loading="lazy" width="230" height="410"><figcaption>뵤도인 · <a href="https://www.byodoin.or.jp/" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure><img src="photos/tsubameya.jpg" alt="쓰바메야" loading="lazy" width="750" height="515"><figcaption>쓰바메야 · <a href="https://uji-tsubameya.com/" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div><ol class="timeline"><li><time>08:15</time><div class="what"><b>숙소 출발</b><span>교토까지 전철 1시간 30분 안팎</span></div></li><li><time>10:15</time><div class="what"><b>난젠지 (또는 무린안 정원)</b><span>절과 정원 둘러보기 <a href="https://www.nanzenji.or.jp/about_rinzaishu/visit" target="_blank" rel="noopener">안내</a></span></div></li><li><time>12:00</time><div class="what"><b>丹 (탄)</b><span class="chip must">예약 필수</span><span>교토 노포 요정 와쿠덴 계열의 제철 점심 코스와 솥밥 (6,600엔) <a href="https://www.tablecheck.com/shops/tan/reserve" target="_blank" rel="noopener">안내</a></span></div></li><li><time>13:30</time><div class="what"><b>시라카와 · 기온</b><span>교토 옛 거리 산책</span></div></li><li><time>15:10</time><div class="what"><b>가와라마치</b><span>시내 구경 · Warhammer 교토</span></div></li><li><time>16:30</time><div class="what"><b>혼케 다이이치아사히</b><span class="chip">줄 서기</span><span>교토역 앞 교토 라멘 이른 저녁 <a href="https://tabelog.com/en/kyoto/A2601/A260101/26000873/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>17:15</time><div class="what"><b>오사카로</b><span>JR로 45분~1시간 15분</span></div></li></ol><dl class="meals"><dt>점심</dt><dd>丹 — 대안: 난젠지 준세이 유도후 (예약 없이, 겨울 두부 냄비)</dd><dt>우지 코스</dt><dd>뵤도인 → 우지가미 신사 → 쓰바메야 (덴푸라 소바) → 차 체험. 대안 식당: 이토큐에몬 (말차 카레 우동)</dd><dt>저녁</dt><dd>다이이치아사히 라멘 — 대안: 신푸쿠사이칸 (현금)</dd></dl><p class="tip"><b>알아둘 것</b>丹은 하루 반(36시간) 전부터 취소하면 전액을 냅니다. 교토는 오사카보다 아침이 1~2℃ 더 춥고, 절에서 신발을 벗는 곳이 있어 두꺼운 양말이 좋습니다.</p><p class="planb"><b>날씨·컨디션이 안 좋으면</b>춥거나 피곤하면 교토역 근처 정원(쇼세이엔)만 보고 라멘 먹고 일찍 돌아옵니다.</p></section><section class="day" id="d17"><header><p class="date">1월 17일 <span>일</span></p><h2>귀국</h2><p class="lead">오전에 체크아웃하고 공항으로 갑니다.</p></header><ol class="timeline"><li><time>오전</time><div class="what"><b>숙소</b><span>조식 · 체크아웃</span></div></li><li><time>출국이 늦으면</time><div class="what"><b>NEXT 시카쿠 (난바)</b><span>라멘 점심 — 또는 스프카레 JACK 신마치점 <a href="https://tabelog.com/en/osaka/A2701/A270202/27124383/" target="_blank" rel="noopener">안내</a></span></div></li><li><time>출국 3시간 전</time><div class="what"><b>간사이공항</b><span>출국 (전철 1시간~1시간 45분) <a href="https://www.kansai-airport.or.jp/access/from-airport/train" target="_blank" rel="noopener">안내</a></span></div></li></ol><dl class="meals"><dt>점심</dt><dd>출국이 늦으면 라멘(NEXT 시카쿠) 또는 스프카레(JACK 신마치점). 이르면 공항에서</dd></dl><p class="tip"><b>알아둘 것</b>일본에서 면세로 산 물건은 짐을 부치기 전에 공항 키오스크에서 확인을 받아야 합니다.</p><p class="planb"><b>날씨·컨디션이 안 좋으면</b>날씨로 전철이 멈추면 공항 리무진 버스를 확인합니다.</p></section>
+<section class="prep" id="prep">
+  <h2>출발 전에 챙길 것</h2>
+  <div class="table"><table>
+    <thead><tr><th>1월 평년 기온</th><th>오사카</th><th>교토</th></tr></thead>
+    <tbody><tr><td>낮 최고</td><td>9.7℃</td><td>9.1℃</td></tr><tr><td>아침 최저</td><td>3.0℃</td><td>1.5℃</td></tr></tbody>
+  </table></div>
+  <ul>
+    <li><b>옷</b> — 두꺼운 겉옷에 벗기 쉬운 얇은 옷을 겹쳐 입기. 전철·가게 안은 따뜻합니다. USJ는 밖에서 오래 기다리니 장갑·목도리·핫팩.</li>
+    <li><b>해 지는 시각</b> — 17시 10분쯤. 관광은 17시 전에 끝나게 잡았습니다.</li>
+    <li><b>현금</b> — 작은 가게는 현금만 받는 곳이 있습니다. 엔화 현금을 넉넉히.</li>
+    <li><b>교통</b> — 오사카 지하철은 해외 카드(Visa·Mastercard 등)를 개찰구에 대면 바로 탑니다. ICOCA 교통카드는 역에서 현금으로 충전합니다.</li>
+    <li><b>휴대폰</b> — USJ 공식 앱 설치·로그인. 카드 결제 때 원화로 낼지 물으면 <b>엔화</b>를 고르세요.</li>
+  </ul>
+  <p class="foot">자료 기준일 2026년 10월. 영업시간·가격은 바뀔 수 있어 예약 전에 다시 확인합니다. 기온은 일본 기상청 평년값입니다. 사진은 각 가게·시설의 공식 사진이며 캡션의 출처에서 원문을 볼 수 있습니다.</p>
+</section>
+</div>
+</body></html>
